@@ -213,3 +213,59 @@ const internQuestions = [
         }
     }
 ]
+
+const init = function () {
+    inquirer
+    .prompt(employeeQuestions)
+    .then(teamData => {
+        const employee = new Employee(teamData);
+        teamArray.push(employee);
+
+        addTeamMember(teamData);
+    })
+}
+
+const managerQuestions = function () {
+    inquirer
+    .prompt(managerQuestions)
+    .then(teamData => {
+        const manager = new Manager(teamData);
+        teamArray.push(manager);
+
+        addTeamMember(teamData);
+    })
+}
+
+const createEngineer = function(data) {
+    inquirer
+    .prompt(engineerQuestions)
+    .then(engineerData => {
+        const engineer = new Engineer(engineerData);
+        teamArray.push(engineer);
+
+        addTeamMember(engineerData);
+    });
+}
+
+const createIntern = function(data) {
+    inquirer
+    .prompt(internQuestions)
+    .then(internData => {
+        const intern = new Intern(internData);
+        teamArray.push(intern);
+
+        addTeamMember(internData);
+    });
+}
+
+const addTeamMember = function (data) {
+    if (data.proceedChoice === 'Add an engineer') {
+        createEngineer(data);
+    } else if (data.proceedChoice === 'Add an intern'){
+        createIntern(data)
+    } else {
+        generateHTML(teamArray);
+    }
+}
+
+init();

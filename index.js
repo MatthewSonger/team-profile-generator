@@ -6,53 +6,11 @@ const generateHTML = require('./src/generate-html');
 
 const teamArray = [];
 
-const employeeQuestions = [
+const managerQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "Employee Name (Required)",
-        validate: nameInput => {
-            if (nameInput) {
-                return true;
-            } else {
-                console.log("Please Enter A Name!");
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'id',
-        message: "Employee ID (Required)",
-        validate: idInput => {
-            if (idInput) {
-                return true;
-            } else {
-                console.log("Please Enter An Employee ID!");
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: "Employee Email Address (Required)",
-        validate: emailInput => {
-            if (emailInput) {
-                return true;
-            } else {
-                console.log("Please Enter An Employee Email Address!");
-                return false;
-            }
-        }
-    }
-]
-
-const mangerQuestions = [
-    {
-        type: 'input',
-        name: 'name',
-        message: "Employee Name (Required)",
+        message: "Manager Name (Required)",
         validate: nameInput => {
             if (nameInput) {
                 return true;
@@ -100,14 +58,21 @@ const mangerQuestions = [
                 return false;
             }
         }
+    },
+    {
+        type: 'list',
+        name: 'proceedChoice',
+        message: 'How would you like to proceed?',
+        choices: ['Add an engineer', 'Add an intern', 'Finish input and generate HTML']
     }
 ]
+
 
 const engineerQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "Employee Name (Required)",
+        message: "Engineer Name (Required)",
         validate: nameInput => {
             if (nameInput) {
                 return true;
@@ -155,15 +120,20 @@ const engineerQuestions = [
                 return false;
             }
         }
+    },
+    {
+        type: 'list',
+        name: 'proceedChoice',
+        message: 'How would you like to proceed?',
+        choices: ['Add an engineer', 'Add an intern', 'Finish input and generate HTML']
     }
-    
 ]
 
 const internQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "Employee Name (Required)",
+        message: "Intern Name (Required)",
         validate: nameInput => {
             if (nameInput) {
                 return true;
@@ -211,21 +181,16 @@ const internQuestions = [
                 return false;
             }
         }
+    },
+    {
+        type: 'list',
+        name: 'proceedChoice',
+        message: 'How would you like to proceed?',
+        choices: ['Add an engineer', 'Add an intern', 'Finish input and generate HTML']
     }
 ]
 
 const init = function () {
-    inquirer
-    .prompt(employeeQuestions)
-    .then(teamData => {
-        const employee = new Employee(teamData);
-        teamArray.push(employee);
-
-        addTeamMember(teamData);
-    })
-}
-
-const managerQuestions = function () {
     inquirer
     .prompt(managerQuestions)
     .then(teamData => {
@@ -259,6 +224,7 @@ const createIntern = function(data) {
 }
 
 const addTeamMember = function (data) {
+
     if (data.proceedChoice === 'Add an engineer') {
         createEngineer(data);
     } else if (data.proceedChoice === 'Add an intern'){

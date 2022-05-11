@@ -2,6 +2,12 @@
   [License Link](http://choosealicense.com/licenses)
 
   # Team Profile Generator
+  
+  ## Built With
+  - HTML
+  - CSS
+  - JavaScript
+  - Node.js
 
 
   ## Table of Contents

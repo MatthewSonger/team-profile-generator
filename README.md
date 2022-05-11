@@ -42,3 +42,6 @@
   
   ## E-mail Address
   matt@matthewsonger.com
+  
+  ## Video Walkthrough
+  https://drive.google.com/file/d/17pnebwIkoRLOqFQYfivsuKFzNiYdLlsC/view
